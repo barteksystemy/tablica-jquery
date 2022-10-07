@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery/jquery.js"></script>
+    <style>
+        .tablica {
+            border: 3px gray solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <p>T: tablice</p>
+        <input type="submit" name="submit" value="Utwórz tabelę" class="submit">
+
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+            let lps = ["lp", "cena", "produkt"]
+            let ceny = ["5,60", "3,23", "7,45", "10,00", "3,20"]
+            let produkty = ["chleb", "mąka", "masło", "kefir", "dżem"]
+
+            let tr = $("<tr>");
+            let td = $("<td>");
+            let tablica = $("<table>")
+            $(".container").append(tablica);
+
+            $(".submit").click(function () {
+
+                $(tablica).addClass("tablica");
+
+                $(tablica).append(tr);
+
+                for (let i = 0; i < 3; i++) {
+                    let zmienna = ("zmienna" + i);
+                    zmienna = $("<td>").html(lps[i]);
+                    $(tr).append(zmienna);
+                }
+
+                let add_td0 = $("<td>")
+                let add_td1 = $("<td>")
+                let add_td2 = $("<td>")
+
+                let suma = 0;
+
+                for (let o = 0; o < ceny.length; o++) {
+                    suma = suma + parseFloat(ceny[o].replace(",", "."));
+                    let add_tr = ("add_tr" + o)
+                    add_tr = $("<tr>")
+                    $(tablica).append(add_tr)
+
+                    let add_td = ("add_td" + o)
+                    add_td = $("<td>").html(o + 1)
+                    $(add_tr).append(add_td)
+
+                    let add_td2 = ("add_td2" + o)
+                    add_td2 = $("<td>").html(ceny[o])
+                    $(add_tr).append(add_td2)
+
+                    let add_td3 = ("add_td3" + o)
+                    add_td3 = $("<td>").html(produkty[o])
+                    $(add_tr).append(add_td3)
+
+                }
+
+                let tr_inny = $("<tr>")
+                $(tablica).append(tr_inny)
+
+                // for (let p = 0; p < lps.length; p++) {
+                //     let ostatnie_tr = ("ostatnie_tr" + p)
+                //     ostatnie_tr = $("<tr>")
+
+                // }
+
+                let td0 = $("<td>").html("6")
+                $(tr_inny).append(td0)
+                let td1 = $("<td>").html(suma).attr("colspan", "2");
+                $(tr_inny).append(td1)
+
+            })
+        })
+
+    </script>
+</body>
+
+</html>
